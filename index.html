@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PMR Study Hub</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f5f6fa;color:#222;transition:.3s}
+header{background:linear-gradient(135deg,#c9151e,#ff4b55);color:#fff;padding:25px 18px 50px;border-radius:0 0 30px 30px}
+.nav{max-width:950px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:21px;font-weight:bold}.dark-btn,.back-btn{border:0;background:rgba(255,255,255,.2);color:#fff;padding:10px 14px;border-radius:12px;cursor:pointer}
+.hero{max-width:950px;margin:45px auto 0}.hero h1{font-size:36px;margin-bottom:12px}.hero p{line-height:1.7;max-width:700px;opacity:.92}
+.search{max-width:950px;margin:-25px auto 30px;padding:0 18px}.search input{width:100%;padding:17px 20px;border:0;border-radius:17px;box-shadow:0 8px 25px #0002;outline:none;font-size:15px}
+.container{max-width:950px;margin:auto;padding:0 18px 50px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:38px}.stat{background:#fff;padding:20px 10px;border-radius:18px;text-align:center;box-shadow:0 5px 20px #0000000d}.stat b{display:block;color:#d71920;font-size:25px;margin-bottom:5px}
+.section-title{margin:30px 0 18px}.section-title h2{font-size:26px}.materials{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+.material{background:#fff;padding:21px;border-radius:20px;box-shadow:0 5px 20px #0000000d;transition:.2s}.material:hover{transform:translateY(-3px)}
+.number{color:#d71920;font-weight:bold;font-size:13px}.material h3{margin:9px 0}.material p{color:#666;line-height:1.6;font-size:14px}.material button{margin-top:16px;background:#d71920;color:#fff;border:0;padding:11px 17px;border-radius:12px;cursor:pointer}
+#materialPage{max-width:950px;margin:auto;padding:25px 18px 20px;min-height:100vh}.material-header{background:linear-gradient(135deg,#c9151e,#ff4b55);color:#fff;padding:25px;border-radius:23px;margin-bottom:25px;box-shadow:0 8px 25px #0002}.material-header h1{font-size:30px;margin-top:22px;margin-bottom:8px}.material-header p{line-height:1.6;opacity:.92}
+.details{background:#fff;padding:27px;border-radius:23px;box-shadow:0 5px 22px #0000000f;line-height:1.75}.details h3{color:#d71920;margin:27px 0 9px}.details h3:first-child{margin-top:0}.details p{margin-bottom:13px}.details ul,.details ol{padding-left:24px;margin:10px 0 15px}.details li{margin:7px 0}
+.info{background:#fff2f3;border-left:4px solid #d71920;padding:17px;border-radius:12px;margin:18px 0}.submateri{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}.sub{background:#fafafa;border:1px solid #eee;padding:15px;border-radius:14px}.sub b{color:#d71920}
+.page-footer,footer{text-align:center;color:#777;padding:30px 15px;font-size:13px}.page-footer{margin-top:25px}
+body.dark{background:#111318;color:#eee}body.dark .stat,body.dark .material,body.dark .details{background:#1b1e25;color:#eee}body.dark .material p{color:#bbb}body.dark .sub{background:#242730;border-color:#333}body.dark .info{background:#2b1b1d}body.dark .search input{background:#1b1e25;color:#fff}body.dark .page-footer,body.dark footer{color:#aaa}
+@media(max-width:650px){.hero h1{font-size:29px}.stats{gap:9px}.stat{font-size:12px}.stat b{font-size:20px}.materials,.submateri{grid-template-columns:1fr}.details{padding:21px}.material-header h1{font-size:25px}}
+</style>
+</head>
+<body>
+<header id="homeHeader">
+<div class="nav"><div class="logo">🩸 PMR Study Hub</div><button class="dark-btn" onclick="darkMode()">🌙 Mode</button></div>
+<div class="hero"><h1>Belajar PMR lebih terarah.</h1><p>Pelajari Palang Merah Remaja secara bertahap, mulai dari pengenalan, kepalangmerahan, pertolongan pertama, kesehatan, lingkungan, bencana, donor darah, hingga kepemimpinan.</p></div>
+</header>
+<div class="search" id="homeSearch"><input id="search" type="text" placeholder="🔎 Cari materi PMR..." onkeyup="searchMaterial()"></div>
+<div class="container" id="homeContent">
+<div class="stats"><div class="stat"><b>8</b>Topik</div><div class="stat"><b>60+</b>Submateri</div><div class="stat"><b>∞</b>Kesempatan Belajar</div></div>
+<div class="section-title"><h2>📚 Materi PMR</h2></div>
+<div class="materials">
+<div class="material"><div class="number">BAB 01</div><h3>❤️ Pengenalan PMR</h3><p>Dasar PMR, tujuan, fungsi, tingkatan, kegiatan, karakter, dan peran anggota.</p><button onclick="showMaterial('pengenalan')">Buka Materi →</button></div>
+<div class="material"><div class="number">BAB 02</div><h3>🩸 Kepalangmerahan</h3><p>Sejarah gerakan, Henry Dunant, PMI, lambang, prinsip, dan nilai kemanusiaan.</p><button onclick="showMaterial('kepalangmerahan')">Buka Materi →</button></div>
+<div class="material"><div class="number">BAB 03</div><h3>🩹 Pertolongan Pertama</h3><p>Prinsip keselamatan, penilaian awal, luka, cedera, dan batas kemampuan penolong.</p><button onclick="showMaterial('pertolongan')">Buka Materi →</button></div>
+<div class="material"><div class="number">BAB 04</div><h3>💚 Kesehatan Remaja</h3><p>Pertumbuhan, PHBS, gizi, tidur, kesehatan reproduksi, mental, dan perilaku berisiko.</p><button onclick="showMaterial('kesehatan')">Buka Materi →</button></div>
+<div class="material"><div class="number">BAB 05</div><h3>🌱 Kesehatan Lingkungan</h3><p>Sanitasi, air bersih, sampah, kebersihan sekolah, pencemaran, dan perilaku ramah lingkungan.</p><button onclick="showMaterial('lingkungan')">Buka Materi →</button></div>
+<div class="material"><div class="number">BAB 06</div><h3>🌋 Kesiapsiagaan Bencana</h3><p>Risiko bencana, mitigasi, kesiapsiagaan, evakuasi, komunikasi, dan pemulihan.</p><button onclick="showMaterial('bencana')">Buka Materi →</button></div>
+<div class="material"><div class="number">BAB 07</div><h3>🩸 Donor Darah</h3><p>Pengertian, manfaat sosial, proses umum, keamanan, dan edukasi donor darah.</p><button onclick="showMaterial('donor')">Buka Materi →</button></div>
+<div class="material"><div class="number">BAB 08</div><h3>🤝 Kepemimpinan PMR</h3><p>Kepemimpinan, komunikasi, kerja tim, tanggung jawab, etika, dan pengorganisasian kegiatan.</p><button onclick="showMaterial('kepemimpinan')">Buka Materi →</button></div>
+</div></div>
+<div id="materialPage" style="display:none"></div>
+<footer id="homeFooter">❤️ PMR Study Hub<br>Belajar • Peduli • Kemanusiaan<br><br><b>PMR WIRA SMA Negeri 14 Padang</b></footer>
+
+<script>
+const materials={
+pengenalan:{
+title:"❤️ Bab 1 — Pengenalan PMR",desc:"Dasar Palang Merah Remaja, tujuan, fungsi, tingkatan, kegiatan, dan karakter anggota.",
+sections:[
+["📖 1. Pengertian PMR",`Palang Merah Remaja (PMR) merupakan wadah kegiatan remaja dalam lingkungan kepalangmerahan dan kemanusiaan. PMR menjadi sarana pembinaan agar remaja memiliki pengetahuan, keterampilan, sikap peduli, serta kesiapan membantu sesama sesuai kemampuan dan pelatihan.`],
+["🎯 2. Tujuan PMR",`<ul><li>Meningkatkan pengetahuan dan keterampilan kepalangmerahan.</li><li>Menanamkan nilai kemanusiaan, kesukarelaan, dan kepedulian.</li><li>Membentuk perilaku hidup sehat.</li><li>Melatih disiplin, tanggung jawab, komunikasi, dan kerja sama.</li><li>Mendorong remaja menjadi contoh positif di sekolah dan masyarakat.</li></ul>`],
+["❤️ 3. Tri Bakti PMR",`Tri Bakti PMR merupakan tiga pedoman utama pembinaan dan kegiatan PMR. Ketiganya menjadi dasar agar anggota PMR tidak hanya memahami teori, tetapi juga menerapkannya dalam kehidupan sehari-hari.<div class="submateri"><div class="sub"><b>1. Meningkatkan keterampilan hidup sehat</b><br>Mendorong kebiasaan hidup bersih dan sehat serta kemampuan menjaga kesehatan diri dan lingkungan.</div><div class="sub"><b>2. Berkarya dan berbakti di masyarakat</b><br>Mengembangkan kepedulian melalui kegiatan sosial, kemanusiaan, dan pelayanan sesuai kemampuan.</div><div class="sub"><b>3. Mempererat persahabatan nasional dan internasional</b><br>Membangun persaudaraan, kerja sama, toleransi, dan hubungan positif dengan sesama.</div></div>`],
+["🧩 4. Fungsi PMR",`<div class="submateri"><div class="sub"><b>📚 Pendidikan</b><br>Belajar kesehatan, kepalangmerahan, dan kemanusiaan.</div><div class="sub"><b>🩹 Keterampilan</b><br>Melatih keterampilan pertolongan pertama dan kesiapsiagaan.</div><div class="sub"><b>❤️ Sosial</b><br>Menumbuhkan kepedulian dan semangat membantu.</div><div class="sub"><b>🤝 Organisasi</b><br>Melatih kerja sama dan kepemimpinan.</div></div>`],
+["🏫 5. Tingkatan PMR",`<div class="submateri"><div class="sub"><b>PMR Mula</b><br>Umumnya tingkat sekolah dasar.</div><div class="sub"><b>PMR Madya</b><br>Umumnya tingkat sekolah menengah pertama.</div><div class="sub"><b>PMR Wira</b><br>Umumnya tingkat sekolah menengah atas/sederajat.</div></div>`],
+["🩹 6. Kegiatan PMR",`<ul><li>Pendidikan kesehatan dan PHBS.</li><li>Pertolongan pertama sesuai kompetensi.</li><li>Kesiapsiagaan bencana.</li><li>Kesehatan lingkungan.</li><li>Kegiatan sosial dan kemanusiaan.</li><li>Latihan kepemimpinan dan kerja tim.</li></ul>`],
+["❤️ 7. Karakter Anggota PMR",`Anggota PMR diharapkan memiliki kepedulian, disiplin, tanggung jawab, empati, sikap sukarela, kemampuan bekerja sama, dan kesadaran untuk menjaga keselamatan diri maupun orang lain.`],
+["📝 8. Rangkuman",`PMR bukan sekadar kegiatan ekstrakurikuler, tetapi wadah pembinaan remaja agar mampu menerapkan nilai kemanusiaan, hidup sehat, bekerja sama, serta membantu sesama dengan pengetahuan dan keterampilan yang benar.`]
+]},
+kepalangmerahan:{
+title:"🩸 Bab 2 — Kepalangmerahan",desc:"Sejarah gerakan, Henry Dunant, PMI, lambang, prinsip, dan nilai kemanusiaan.",
+sections:[
+["📖 1. Pengertian Kepalangmerahan",`Kepalangmerahan berkaitan dengan gerakan kemanusiaan yang berupaya mencegah dan meringankan penderitaan manusia, melindungi kehidupan dan kesehatan, serta menghormati martabat manusia.`],
+["👨‍⚕️ 2. Henry Dunant dan Solferino",`Henry Dunant menyaksikan penderitaan korban Pertempuran Solferino pada 1859. Pengalaman tersebut mendorong gagasan agar korban perang memperoleh bantuan tanpa memandang pihak yang mereka dukung. Gagasan ini menjadi bagian penting dari sejarah lahirnya Gerakan Palang Merah dan Bulan Sabit Merah.`],
+["🇮🇩 3. Palang Merah Indonesia",`PMI merupakan organisasi kemanusiaan di Indonesia. Kegiatannya mencakup pelayanan kemanusiaan, penanggulangan bencana, pertolongan pertama, pelayanan darah, pembinaan relawan, serta kegiatan sosial.`],
+["➕ 4. Lambang Kepalangmerahan",`Lambang kepalangmerahan memiliki fungsi perlindungan dan/atau penanda sesuai ketentuan hukum dan aturan gerakan. Penggunaannya tidak boleh sembarangan karena lambang memiliki makna dan perlindungan khusus.`],
+["🌍 5. Tujuh Prinsip Dasar Gerakan",`<div class="submateri"><div class="sub"><b>1. Kemanusiaan</b><br>Mencegah dan meringankan penderitaan.</div><div class="sub"><b>2. Kesamaan</b><br>Membantu berdasarkan kebutuhan.</div><div class="sub"><b>3. Kenetralan</b><br>Tidak memihak dalam konflik.</div><div class="sub"><b>4. Kemandirian</b><br>Mempertahankan kemampuan bertindak sesuai prinsip.</div><div class="sub"><b>5. Kesukarelaan</b><br>Membantu tanpa dorongan mencari keuntungan.</div><div class="sub"><b>6. Kesatuan</b><br>Satu perhimpunan nasional dalam satu negara.</div><div class="sub"><b>7. Kesemestaan</b><br>Gerakan bersifat mendunia dan saling mendukung.</div></div>`],
+["🤝 6. Penerapan oleh PMR",`<ul><li>Tidak membeda-bedakan orang yang membutuhkan bantuan.</li><li>Mengutamakan keselamatan dan martabat manusia.</li><li>Menghormati perbedaan.</li><li>Menolong sesuai kemampuan dan pelatihan.</li><li>Menjaga kepercayaan serta tidak menyalahgunakan kegiatan kemanusiaan.</li></ul>`],
+["🎵 7. Mars PMI",`Mars PMI merupakan lagu organisasi yang digunakan untuk membangun semangat, kebersamaan, dan identitas dalam kegiatan Palang Merah Indonesia. Saat mempelajarinya, anggota PMR sebaiknya memahami makna lagu, sikap yang dibangun, serta nilai kemanusiaan yang tercermin di dalamnya. <div class="info"><b>📌 Catatan:</b><br>Bagian lirik lengkap tidak ditampilkan di sini. Untuk lirik resmi, gunakan sumber atau buku materi PMI yang berwenang.</div>`],
+["📝 8. Rangkuman",`Kepalangmerahan berakar pada nilai kemanusiaan dan kesukarelaan. Sejarahnya tidak terlepas dari Henry Dunant dan perkembangan gerakan internasional. Tujuh prinsip dasar menjadi pedoman perilaku dalam menjalankan kegiatan kemanusiaan.`]
+]},
+pertolongan:{
+title:"🩹 Bab 3 — Pertolongan Pertama",desc:"Prinsip keselamatan, penilaian awal, perlengkapan, dan tindakan awal yang aman.",
+sections:[
+["📖 1. Pengertian",`Pertolongan pertama adalah bantuan awal kepada orang yang sakit atau cedera sebelum memperoleh pertolongan medis lebih lanjut. Tujuannya bukan menggantikan tenaga medis, tetapi menjaga keselamatan dan mencegah kondisi memburuk.`],
+["🎯 2. Tujuan",`<ul><li>Menjaga keselamatan korban dan penolong.</li><li>Mencegah kondisi menjadi lebih buruk.</li><li>Membantu mengurangi penderitaan.</li><li>Mendukung pemulihan sampai bantuan lebih lanjut datang.</li></ul>`],
+["⚠️ 3. Prinsip Keselamatan",`<ol><li>Pastikan lokasi aman sebelum mendekat.</li><li>Gunakan alat pelindung bila tersedia.</li><li>Jangan membahayakan diri sendiri.</li><li>Minta bantuan orang dewasa atau layanan darurat untuk kondisi serius.</li><li>Jangan melakukan tindakan yang belum dikuasai.</li></ol>`],
+["🔎 4. Penilaian Awal",`Secara umum penolong perlu memperhatikan keamanan lokasi, respons korban, pernapasan, dan tanda keadaan darurat. Bila ditemukan kondisi yang mengancam nyawa, segera cari bantuan profesional dan ikuti instruksi petugas.`],
+["🧰 5. Perlengkapan Dasar",`<div class="submateri"><div class="sub"><b>Kasa steril</b><br>Untuk membantu menutup luka.</div><div class="sub"><b>Perban</b><br>Membantu mempertahankan balutan.</div><div class="sub"><b>Plester</b><br>Untuk kebutuhan luka kecil.</div><div class="sub"><b>Sarung tangan</b><br>Mengurangi kontak langsung dengan darah atau cairan tubuh.</div></div>`],
+["🩸 6. Luka dan Perdarahan",`Pada luka, utamakan keselamatan dan kebersihan. Gunakan sarung tangan bila tersedia, tutup luka dengan bahan bersih, dan cari pertolongan medis bila perdarahan berat atau tidak terkendali. Jangan memberikan tindakan invasif atau memasukkan benda ke dalam luka.`],
+["🔥 7. Luka Bakar",`Jauhkan sumber panas dan pastikan lokasi aman. Untuk luka bakar ringan, pendinginan dengan air mengalir yang sejuk dapat membantu. Jangan mengoleskan bahan rumah tangga yang tidak direkomendasikan dan jangan memecahkan lepuh. Luka bakar luas, dalam, atau mengenai area penting membutuhkan pertolongan medis.`],
+["🦴 8. Cedera dan Patah Tulang",`Hindari memindahkan bagian tubuh yang cedera secara tidak perlu. Jangan mencoba meluruskan tulang atau memasukkannya kembali. Stabilkan sesuai kemampuan dan pelatihan, kemudian cari bantuan medis.`],
+["🚨 9. Kondisi Darurat",`Korban tidak responsif, kesulitan bernapas, perdarahan berat, kejang, atau kondisi serius lainnya memerlukan bantuan segera. Hubungi orang dewasa dan layanan darurat setempat. Anggota PMR harus bekerja sesuai tingkat pelatihan.`],
+["📝 10. Rangkuman",`Pertolongan pertama menempatkan keselamatan sebagai prioritas. Penolong harus menilai situasi, menggunakan perlindungan yang sesuai, memberikan bantuan yang dikuasai, dan segera mencari pertolongan profesional untuk keadaan serius.`]
+]},
+kesehatan:{
+title:"💚 Bab 4 — Kesehatan Remaja",desc:"Kesehatan fisik, mental, sosial, gizi, kebersihan, reproduksi, dan perilaku hidup sehat.",
+sections:[
+["📖 1. Pengertian Kesehatan Remaja",`Kesehatan remaja mencakup kesejahteraan fisik, mental, dan sosial. Remaja yang sehat bukan hanya bebas dari penyakit, tetapi juga mampu berkembang, belajar, berhubungan dengan orang lain, dan mengambil keputusan yang mendukung kesehatan.`],
+["🧬 2. Pertumbuhan dan Perkembangan",`Masa remaja ditandai perubahan fisik, hormonal, emosional, kognitif, dan sosial. Setiap orang berkembang dengan kecepatan yang berbeda. Pemahaman ini membantu remaja menghargai dirinya dan orang lain tanpa membandingkan secara tidak sehat.`],
+["🧼 3. PHBS",`<ul><li>Mencuci tangan dengan sabun.</li><li>Menjaga kebersihan tubuh, pakaian, gigi, dan lingkungan.</li><li>Menggunakan air dan makanan yang aman.</li><li>Beraktivitas fisik secara teratur.</li><li>Tidak merokok dan menjauhi zat berbahaya.</li><li>Menjaga kebiasaan tidur dan istirahat.</li></ul>`],
+["🥗 4. Gizi Seimbang",`Gizi seimbang berarti memenuhi kebutuhan zat gizi melalui makanan yang beragam dan pola hidup sehat. Karbohidrat, protein, lemak, vitamin, mineral, dan air memiliki fungsi berbeda. Kebutuhan setiap orang dapat berbeda sehingga fokusnya adalah pola makan yang cukup, beragam, dan aman.`],
+["🏃 5. Aktivitas Fisik dan Istirahat",`Aktivitas fisik mendukung kebugaran dan kesehatan tubuh. Istirahat dan tidur juga penting untuk pemulihan dan konsentrasi. Kebiasaan sehat dapat dilakukan secara bertahap dan disesuaikan dengan kondisi masing-masing.`],
+["🩺 6. Kesehatan Reproduksi",`Kesehatan reproduksi mencakup kesehatan fisik, mental, dan sosial yang berkaitan dengan sistem reproduksi. Remaja perlu memahami perubahan pubertas, menjaga kebersihan, menghormati batasan diri dan orang lain, serta mendapatkan informasi dari sumber terpercaya.`],
+["🧠 7. Kesehatan Mental",`Kesehatan mental berkaitan dengan kemampuan mengenali emosi, menghadapi tekanan, belajar, berinteraksi, dan mengambil keputusan. Strategi sehat antara lain mengatur waktu, beristirahat, melakukan kegiatan positif, berbicara dengan orang tepercaya, dan mencari bantuan profesional jika diperlukan.`],
+["🚭 8. Perilaku Berisiko",`Rokok, vape, alkohol, narkotika, dan perilaku berbahaya lainnya dapat menimbulkan risiko bagi kesehatan dan kehidupan sosial. Sikap PMR adalah menolak ajakan yang berbahaya, memilih lingkungan positif, dan mengarahkan teman untuk mencari bantuan yang tepat.`],
+["🩹 9. Peran PMR",`PMR dapat menjadi penggerak perilaku sehat melalui edukasi, kampanye kebersihan, kegiatan kebugaran, dukungan kesehatan sekolah, latihan pertolongan pertama, serta kegiatan sosial.`],
+["📝 10. Rangkuman",`Kesehatan remaja bersifat menyeluruh. Kebiasaan bersih, makanan beragam, aktivitas fisik, tidur cukup, kesehatan mental, pemahaman reproduksi, dan menjauhi perilaku berisiko merupakan bagian penting dari kehidupan sehat.`]
+]},
+lingkungan:{
+title:"🌱 Bab 5 — Kesehatan Lingkungan",desc:"Sanitasi, air bersih, sampah, kebersihan sekolah, pencemaran, dan peran PMR.",
+sections:[
+["📖 1. Pengertian Kesehatan Lingkungan",`Kesehatan lingkungan berkaitan dengan kondisi lingkungan fisik, sosial, dan perilaku yang dapat memengaruhi kesehatan manusia. Lingkungan yang sehat membantu mencegah penyakit dan meningkatkan kualitas hidup.`],
+["💧 2. Air Bersih dan Sanitasi",`Air yang aman dan sanitasi yang baik penting untuk mencegah penyakit. Fasilitas toilet perlu dijaga kebersihannya, sumber air dilindungi dari pencemaran, dan kebiasaan mencuci tangan diterapkan pada waktu yang tepat.`],
+["🗑️ 3. Pengelolaan Sampah",`Pengelolaan sampah mencakup pengurangan, pemilahan, penggunaan kembali bila memungkinkan, dan pembuangan yang benar. Sampah yang menumpuk dapat menjadi tempat berkembang biaknya vektor penyakit dan mencemari lingkungan.`],
+["🌫️ 4. Pencemaran Lingkungan",`Pencemaran dapat terjadi pada udara, air, dan tanah. Sumbernya antara lain asap, limbah, bahan kimia, dan sampah. Pencegahan dilakukan dengan mengurangi sumber pencemar dan menerapkan perilaku ramah lingkungan.`],
+["🏫 5. Sekolah Sehat",`Sekolah sehat membutuhkan ruang belajar bersih, ventilasi yang baik, air dan toilet yang layak, pengelolaan sampah, serta kebiasaan warga sekolah yang mendukung kesehatan.`],
+["❤️ 6. Peran PMR",`PMR dapat melakukan edukasi PHBS, kampanye kebersihan, pemilahan sampah, pemeriksaan sederhana kondisi lingkungan bersama pembina, dan mengajak warga sekolah menjaga fasilitas bersama.`],
+["📝 7. Rangkuman",`Kesehatan lingkungan adalah tanggung jawab bersama. Kebersihan, sanitasi, air aman, pengelolaan sampah, dan pengendalian pencemaran merupakan bagian penting dalam menciptakan lingkungan sehat.`]
+]},
+bencana:{
+title:"🌋 Bab 6 — Kesiapsiagaan Bencana",desc:"Mengenali risiko, mitigasi, kesiapsiagaan, evakuasi, komunikasi, dan pemulihan.",
+sections:[
+["📖 1. Pengertian Bencana",`Bencana adalah peristiwa yang dapat mengganggu kehidupan masyarakat dan menimbulkan korban, kerusakan, kerugian, atau dampak psikologis. Bencana dapat berasal dari alam, nonalam, maupun faktor sosial.`],
+["🔎 2. Risiko Bencana",`Risiko dipengaruhi oleh bahaya, kerentanan, dan kapasitas. Mengenali ancaman di sekitar sekolah dan rumah membantu menentukan tindakan pencegahan yang sesuai.`],
+["🛡️ 3. Mitigasi",`Mitigasi adalah upaya mengurangi risiko bencana sebelum bencana terjadi. Contohnya mengenali jalur evakuasi, mengetahui titik kumpul, mengamankan barang berbahaya, dan mengikuti simulasi.`],
+["🎒 4. Kesiapsiagaan",`Kesiapsiagaan meliputi rencana keluarga, kontak darurat, pengetahuan jalur evakuasi, tas siaga sesuai kebutuhan, serta latihan berkala. Informasi harus berasal dari sumber resmi.`],
+["🚪 5. Evakuasi",`Saat evakuasi, tetap tenang, ikuti arahan petugas atau guru, gunakan jalur yang ditentukan, jangan kembali mengambil barang, dan menuju titik kumpul. Jangan menggunakan jalur yang dinyatakan berbahaya.`],
+["📢 6. Komunikasi Darurat",`Informasi darurat harus singkat, jelas, dan berdasarkan fakta. Hindari menyebarkan kabar yang belum terverifikasi karena dapat menimbulkan kepanikan.`],
+["🤝 7. Peran PMR",`PMR dapat membantu edukasi kesiapsiagaan, mengikuti simulasi, membantu pendataan sederhana sesuai arahan pembina, mendukung kegiatan kesehatan pengungsian, dan menjaga komunikasi yang tertib.`],
+["📝 8. Rangkuman",`Kesiapsiagaan dimulai sebelum bencana. Mengenali risiko, menyiapkan rencana, memahami evakuasi, mengikuti informasi resmi, dan bekerja sama dapat mengurangi dampak bencana.`]
+]},
+donor:{
+title:"🩸 Bab 7 — Donor Darah",desc:"Mengenal donor darah, manfaat sosial, keamanan, proses umum, dan peran edukasi PMR.",
+sections:[
+["📖 1. Pengertian Donor Darah",`Donor darah adalah tindakan sukarela memberikan darah melalui proses yang dilakukan oleh fasilitas atau layanan transfusi yang berwenang. Darah yang dikumpulkan kemudian diproses dan digunakan sesuai kebutuhan medis.`],
+["❤️ 2. Mengapa Donor Darah Penting?",`Ketersediaan darah dibutuhkan untuk berbagai kondisi medis, seperti operasi, kecelakaan, penyakit tertentu, dan keadaan lain yang membutuhkan transfusi. Karena darah tidak dapat diproduksi secara sederhana untuk menggantikan seluruh kebutuhan transfusi, ketersediaannya bergantung pada donor.`],
+["🩺 3. Keamanan Donor",`Donor dilakukan melalui prosedur pemeriksaan dan skrining oleh petugas kesehatan. Kelayakan donor ditentukan berdasarkan kondisi kesehatan, usia, berat badan, riwayat medis, dan persyaratan yang berlaku saat donor.`],
+["📝 4. Proses Umum",`Secara umum terdapat pendaftaran, pemeriksaan atau skrining, pengambilan darah oleh petugas terlatih, kemudian pemulihan dan observasi singkat. Prosedur dapat berbeda menurut layanan transfusi.`],
+["🥤 5. Setelah Donor",`Setelah donor, pendonor mengikuti arahan petugas, beristirahat, dan memenuhi kebutuhan cairan serta makanan sesuai anjuran. Jika muncul keluhan yang mengkhawatirkan, sampaikan kepada petugas kesehatan.`],
+["🚫 6. Siapa yang Boleh Donor?",`Tidak semua orang otomatis memenuhi syarat. Persyaratan donor ditetapkan oleh layanan transfusi dan dapat berubah. Remaja yang belum memenuhi ketentuan usia atau persyaratan kesehatan tidak boleh dipaksakan untuk donor.`],
+["🤝 7. Peran PMR",`PMR dapat membantu edukasi tentang pentingnya donor darah, melawan informasi keliru, mendukung kampanye kemanusiaan, dan membantu kegiatan donor sesuai arahan PMI atau tenaga kesehatan. PMR tidak menentukan kelayakan medis donor.`],
+["📝 8. Rangkuman",`Donor darah merupakan bentuk kepedulian kemanusiaan. Keselamatan donor dan penerima adalah prioritas sehingga seluruh proses harus mengikuti pemeriksaan dan prosedur layanan transfusi yang berwenang.`]
+]},
+kepemimpinan:{
+title:"🤝 Bab 8 — Kepemimpinan PMR",desc:"Kepemimpinan, komunikasi, kerja tim, tanggung jawab, etika, dan pengorganisasian kegiatan.",
+sections:[
+["📖 1. Pengertian Kepemimpinan",`Kepemimpinan adalah kemampuan memengaruhi dan mengarahkan kelompok untuk mencapai tujuan bersama secara bertanggung jawab. Pemimpin PMR bukan sekadar orang yang memberi perintah, tetapi juga memberi contoh, mendengarkan, dan membantu anggota berkembang.`],
+["🎯 2. Karakter Pemimpin",`<div class="submateri"><div class="sub"><b>Integritas</b><br>Jujur dan konsisten dengan nilai yang diyakini.</div><div class="sub"><b>Tanggung Jawab</b><br>Berani menjalankan dan mempertanggungjawabkan tugas.</div><div class="sub"><b>Empati</b><br>Memahami kondisi dan kebutuhan anggota.</div><div class="sub"><b>Disiplin</b><br>Menghargai waktu, aturan, dan kesepakatan.</div></div>`],
+["🗣️ 3. Komunikasi Efektif",`Komunikasi yang baik membutuhkan pesan yang jelas, bahasa yang sopan, kemampuan mendengarkan, dan umpan balik. Dalam kegiatan PMR, informasi keselamatan harus disampaikan secara tepat agar tidak menimbulkan kesalahpahaman.`],
+["🤝 4. Kerja Tim",`Tim yang baik memiliki tujuan bersama, pembagian tugas, komunikasi, saling percaya, dan evaluasi. Perbedaan pendapat dapat diselesaikan melalui diskusi dan keputusan yang mempertimbangkan tujuan organisasi.`],
+["📋 5. Perencanaan Kegiatan",`Perencanaan dapat dimulai dengan menentukan tujuan, sasaran, waktu, tempat, pembagian tugas, kebutuhan alat, risiko, komunikasi, dan rencana evaluasi. Kegiatan kemanusiaan harus mengutamakan keselamatan dan izin yang diperlukan.`],
+["⚖️ 6. Etika dalam PMR",`Anggota harus menghormati martabat orang lain, menjaga privasi, tidak menyebarkan informasi pribadi, tidak mengambil foto atau membagikan cerita sensitif tanpa pertimbangan yang tepat, dan tidak mengaku memiliki kompetensi yang belum dimiliki.`],
+["🧯 7. Pengambilan Keputusan",`Pemimpin perlu mengumpulkan fakta, mengenali risiko, mendengar masukan, menentukan pilihan yang paling aman dan sesuai tujuan, lalu mengevaluasi hasilnya. Dalam keadaan darurat, ikuti prosedur dan arahan petugas yang berwenang.`],
+["📊 8. Evaluasi",`Setelah kegiatan, tim dapat mengevaluasi apa yang berjalan baik, masalah yang muncul, penyebabnya, dan perbaikan untuk kegiatan berikutnya. Evaluasi bukan untuk menyalahkan individu, tetapi meningkatkan kualitas tim.`],
+["📝 9. Rangkuman",`Kepemimpinan PMR dibangun melalui keteladanan, komunikasi, tanggung jawab, kerja sama, etika, dan kemampuan mengambil keputusan. Pemimpin yang baik membantu tim mencapai tujuan sambil menjaga keselamatan dan martabat semua pihak.`]
+]}
+};
+
+function darkMode(){document.body.classList.toggle("dark")}
+function searchMaterial(){
+ const input=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".material").forEach(card=>card.style.display=card.innerText.toLowerCase().includes(input)?"block":"none");
+}
+function showMaterial(type){
+ const data=materials[type], page=document.getElementById("materialPage");
+ document.getElementById("homeHeader").style.display="none";
+ document.getElementById("homeSearch").style.display="none";
+ document.getElementById("homeContent").style.display="none";
+ document.getElementById("homeFooter").style.display="none";
+ let html=`<div class="material-header"><button class="back-btn" onclick="backHome()">← Kembali ke Beranda</button><h1>${data.title}</h1><p>${data.desc}</p></div><div class="details">`;
+ data.sections.forEach((s,i)=>{
+   html+=`<h3>${s[0]}</h3>${i===0?'<div class="info"><b>💡 Intinya:</b><br>Pelajari konsep ini sebagai dasar sebelum masuk ke keterampilan dan penerapan PMR.</div>':''}<div>${s[1]}</div>`;
+ });
+ html+=`</div><div class="page-footer">PMR WIRA SMA Negeri 14 Padang</div>`;
+ page.innerHTML=html;page.style.display="block";window.scrollTo(0,0);
+}
+function backHome(){
+ document.getElementById("materialPage").style.display="none";
+ document.getElementById("homeHeader").style.display="block";
+ document.getElementById("homeSearch").style.display="block";
+ document.getElementById("homeContent").style.display="block";
+ document.getElementById("homeFooter").style.display="block";
+ window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
